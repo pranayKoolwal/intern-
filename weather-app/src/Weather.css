@@ -1,0 +1,141 @@
+body{
+    background-color: rgba(5, 5, 36, 0.232);
+    text-align: center;
+    text-transform: capitalize;
+}
+img{
+    /* box-shadow: 0px 0px 5px 5px white; */
+}
+.search {
+    text-transform: capitalize;
+    display: flex;
+    /* background-color: aqua; */
+    width: 21%;
+    justify-content: space-evenly;
+    margin:auto;
+    margin-top: 110px;
+}
+.search input{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 8px 9px;
+    border: none;
+
+}
+.search input:focus{
+    outline: none;
+}
+.search button{
+    font-family: sans-serif;
+    border: none;
+    background-color: rgba(23, 187, 132, 0.664);
+    color: white;
+    font-size: 18px;
+    padding: 05px 15px;
+    border-radius: 10px;
+}
+.search button:hover{
+    background-color: rgb(0, 118, 77);
+}
+.container{
+    width: 70%;
+    background-color: white;
+    box-shadow: 0px 0px 5px grey;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.container .top,.bottom{
+    width: 100%;
+    /* background-color: green; */
+    /* border: 2px solid white; */
+}
+.container .top{
+    height: 200px;
+    /* background-color: green; */
+}
+.container .bottom{
+    display: flex;
+
+}
+.container .innerOne{
+    width: 75%;
+    background-color: black;
+    color: white;
+    display: flex;
+}
+.container .innerOne .temperature{
+    width: 30%;
+    font-family: monospace;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px;
+}
+.container .innerOne .other{
+
+    text-align: center;
+    background-color: rgb(129, 129, 208);
+    width: 70%;
+}
+
+.container 
+{
+    /* border-radius: 20px; */
+}
+.container .innerTwo{
+    background-color: rgb(213, 230, 224);
+    width: 25%;
+}
+.container .Sec-main{
+    display: flex;
+    /* width: % !important; */
+    text-align: center;
+    justify-content: space-around;
+    /* background-color: green; */
+    padding-left: 05px;
+    /* padding-left: 15px; */
+    padding-right: 05px !important;
+    margin-top: 5px;
+}
+.Sec-main div{
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    font-family: monospace;
+    letter-spacing: 1px;
+    padding: 7px;
+    font-size: 15px;
+    /* background-color: blue;  */
+}
+.weatherImg{
+    font-size: 40px;
+    font-family: monospace !important;
+}
+.innerTwo div{
+    width: 90%;
+    margin: auto;
+    
+    /* background-color: aqua; */
+}
+.innerTwo div{
+    color: white;
+    text-shadow: 0px 0px 5px grey;
+    font-size: 20px;
+    font-family: monospace;
+    margin-top: 10px;
+}
+.temperature span{
+    /* background-color: antiquewhite; */
+    position: relative;
+    bottom: 13px;
+    left: 07px;
+}
+.top img{
+    /* background-color: aqua; */
+    height: 200px;
+    width: 40%;
+    position: relative;
+    right:200px ;
+}

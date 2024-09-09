@@ -1,0 +1,115 @@
+body
+{
+    text-transform: capitalize;
+    text-align: center !important;
+    background-image: url(images/mine.jpg);
+    width: 100%;
+    min-height: 97vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+.Top{
+    background-image: url(images/eaarth.gif);
+    text-shadow: 0px 0px 1px rgb(223, 211, 211);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: capitalize; 
+     color: transparent !important; 
+    background-repeat: no-repeat;
+    background-color: green;
+    /* background-position: left 0px  top 35px ; */
+    -webkit-text-stroke: 1px;
+    background-clip: text;
+    -webkit-background-clip:text ; 
+    background-size: 100% 100%;
+
+}
+
+.container{
+    
+    height: auto;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    /* background-col/r: aqua; */
+    box-shadow: 0px 0px 5px 5px grey ;
+    border-radius: 10px ;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 10px;
+    margin-top: 50px;
+
+}
+input[type='submit'] {
+    background-color: rgba(60, 60, 245, 0.535);
+    color: white;
+    font-size: 15px;
+
+}
+.container .task{
+    width: 250px;
+
+}
+.container input{
+    border: none;
+    padding: 10px;
+    border-radius: 07px;
+}
+.container textarea{
+    border-radius: 10px;
+    border: none;
+    padding: 5px 0px 0px 8px ;
+}
+.container *:focus{
+    outline: none;
+}
+.container .des{
+    height: 50px;
+    width: 300px;
+    display: block;
+}
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 65%;
+    margin: auto;
+    text-align: center !important;
+    margin-top: 30px ;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  /* #customers tr:nth-child(odd){background-color: #e1dcdc;} */
+   #customers tr:nth-child(odd){background-color: rgb(206, 206, 222);} 
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center ;
+    /* background-color: #04AA6D; */
+    background-color:  rgb(9, 63, 63);
+    color: white;
+  }
+  
+  form h1{
+    background-image: linear-gradient(rgb(63, 62, 62), rgb(9, 63, 63));
+    text-shadow: 0px 0px 1px rgb(223, 211, 211);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: capitalize; 
+     color: transparent !important; 
+    background-repeat: no-repeat;
+    /* background-color: green; */
+    /* background-position: left 0px  top 35px ; */
+    -webkit-text-stroke: 1px;
+    background-clip: text;
+    -webkit-background-clip:text ; 
+    background-size: 100% 100%;
+ 
+  }

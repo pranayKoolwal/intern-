@@ -1,0 +1,31 @@
+.container{
+    width: 30%;
+    margin: auto;
+    margin-top: 50px;
+    display:  flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-radius:10px;
+    background-color: rgb(32, 33, 33);
+    padding-bottom: 5px;
+}
+.container div{
+    border-radius: 10px;
+    border: 1px solid white;
+    width: 30%;
+    height: 100px;
+    background-color: black;
+    margin-top: 5px;
+
+}
+.cross{
+    background-image: url(/public/images/images2.gif);
+    background-position: center center;
+
+}
+.zero{
+    background-image: url(/public/images/zero2.jpg);
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
