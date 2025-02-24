@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css"; // Import the CSS file
 import { MdOutlineModeEdit } from "react-icons/md";
-const API_KEY = "AIzaSyC1nFL8hKxzm5xQHC0lMRRlNv7kul8AXpA"; // Replace with your actual API Key
+const API_KEY = "your api key"; // Replace with your actual API Key
 
 const App = () => {
   const [input, setInput] = useState("");
