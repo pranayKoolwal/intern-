@@ -1,201 +1,137 @@
-import React, { useEffect } from 'react' ;
-import './Pattern.css';
-import { useState } from 'react'; 
-import { isCompositeComponent } from 'react-dom/test-utils';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import "./Pattern.css";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-function Pattern() { 
-  let mapping = [1,2,3,4,5,6,7,8,9] 
-  let [collection , setCollection] = useState([])
-  let [images, setImg] = useState(["","","","","","","","",""])
-  let [char,setchar] = useState({
-    me:[],
-    pc:[]
-  })
-  let [currentPoints,setpos] = useState('')
-  let [inner,setInner] = useState([])
-  let [result,setresult] = useState('none')
-  let winning_possiblities = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [2,5,8],
-    [2,4,6],
-    [0,4,8],
-    [1,4,7]
-  ]
-  let reset = ()=>{
-        setCollection([])
-        let setInter = setTimeout(()=>{
-          setImg([])
-        },5000) 
-      setchar({me:[],pc:[]})
-      setpos('')
-      setInner([])
-      setresult('none')
-  }
-  useEffect(()=>{
-      if(currentPoints!==""){
-         let ImageData = [...images]
-         ImageData[currentPoints] = 'cross'
-        setImg([...ImageData])
-        setCollection([...collection,currentPoints])
+
+function Pattern() {
+  const mapping = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [2, 5, 8],
+    [2, 4, 6],
+    [0, 4, 8],
+    [1, 4, 7]
+  ];
+
+  const [board, setBoard] = useState(Array(9).fill(""));
+  const [playerMoves, setPlayerMoves] = useState([]);
+  const [computerMoves, setComputerMoves] = useState([]);
+  const [gameStatus, setGameStatus] = useState("Playing...");
+  const [gameOver, setGameOver] = useState(false);
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(""));
+    setPlayerMoves([]);
+    setComputerMoves([]);
+    setGameStatus("Playing...");
+    setGameOver(false);
+  };
+
+  const checkWinner = (moves, player) => {
+    for (const combination of winningCombinations) {
+      if (combination.every((index) => moves.includes(index))) {
+        setGameOver(true);
+        if (player === "Player") {
+          toast.success("You won!");
+          setGameStatus("You Won!");
+          resetGame()
+        } else {
+          toast.error("You Lost!");
+          setGameStatus("Computer Won!");
+          resetGame()
         }
-        let forFinal = {...char}
-        for (const iterator of forFinal['pc']) {
-          if(images[iterator]===""){
-             let data = {...forFinal}
-             let pos = data['pc'].indexOf(iterator)
-             data['pc'].splice(pos,1)
-             forFinal={...data}
-             setchar({...data})
-
-            }
-        }
-             let sec=Array.from(new Set(forFinal['pc']))
-             forFinal={...forFinal,pc:[...sec]}
-             console.log(forFinal)
-              for(let state in winning_possiblities){
-                 let pointer_me = 0
-                 let pointer_pc = 0
-                  for(let innerState of winning_possiblities[state]){
-                       if(forFinal['me'].includes(innerState) ){
-                         ++pointer_me  
-                       }
-                       if(forFinal['pc'].includes(innerState)){
-                         ++pointer_pc    
-                       }
-                  }
-
-                  if(pointer_me===3 ){
-                     toast.success('you won')
-                     reset()
-                  
-                     break
-                  }
-                  else if(pointer_pc===3){
-                    toast.error('you Lost')
-                    reset()
-                  
-                    break                   
-                  }
-                  else if(forFinal['me'].length+forFinal['pc'].length === mapping.length ){
-                    console.log(forFinal)
-
-                     toast.dark('tie')
-                     reset()
-                  
-                     break
-                  }
-                  
-              }
-
-  },[currentPoints])
-let eventFunc = (get)=>{
-    let mine={...char}
-    mine['me'].push(get)
-    let img = [...images]
-    img[get] = 'cross'
-    let col = [...collection,get]
-    setchar({...mine}) 
-    setpos(get)
-    inBetweenFunc([...col],[...img],mine)
-}
-let inBetweenFunc=(col,img,person)=>{
-  let end_check=0
-  let data = [...inner]
-    if(person['me'].length >1){
-      for(let i in winning_possiblities){
-        let pointer = 0
-        if(!data.includes(i)){
-             for (let j in winning_possiblities[i]){
-               if(person['me'].includes(winning_possiblities[i][j]) ){
-                   pointer++
-               }
-             }
-             if(pointer===2 ){
-               data.push(i)
-               setInner([...data])
-               again(winning_possiblities[i], person)
-               pointer=0
-               end_check='done'
-               break
-             }  
-      } 
-      else{
-        comp(col,img)
-      }   
-    }
-    }
-    if(end_check!='done'){
-            comp(col,img)
-    }
-}
-let again = (get ,person)=>{
-  for(let j of get){
-      if(!person['me'].includes(j) && !collection.includes(j)){
-            let Inner= [...images]
-            Inner[j] = 'zero'
-            let charData = {...person}
-            charData['pc'].push(j)
-            setchar({...charData})
-            setCollection([...collection,j])    
-            setImg([...Inner])    
-            break
+        return true;
       }
-  }
+    }
+    return false;
+  };
 
-}
-let comp = (num1 , num2)=>{
-      let arr= []
-      let innerNum1 = [...num1]
-      let innerNum2 = [...num2]
-      if(collection.length<mapping.length){
-        while (true){
-          let rd= Math.floor(Math.random() * mapping.length)
-          if(!innerNum1.includes(rd)){
-              innerNum1.push(rd)
-              innerNum2[rd] = 'zero'
-              setCollection([...innerNum1])
-              setImg([...innerNum2])
-              let pcData={...char}
-              pcData.pc.push(rd)
-              setchar({...pcData})
-              let all=[]
-              if(char['me'].length<=2){
-                for(let index in winning_possiblities)
-                  {
-                    if(winning_possiblities[index].includes(rd) && !inner.includes(index)){
-                          all.push(index)
-                          break
-                    }
-                  }                
-                setInner([...inner,...all])
-              }
-                 
-              break 
-          }
-      }}    
-}
-   return(
+  const makeMove = (index, player) => {
+    if (board[index] !== "" || gameOver) return;
+    const newBoard = [...board];
+    newBoard[index] = player === "Player" ? "X" : "O";
+
+    if (player === "Player") {
+      setPlayerMoves([...playerMoves, index]);
+    } else {
+      setComputerMoves([...computerMoves, index]);
+    }
+
+    setBoard(newBoard);
+  };
+
+  useEffect(() => {
+    if (playerMoves.length > 0) {
+      if (checkWinner(playerMoves, "Player")) return;
+
+      if (playerMoves.length + computerMoves.length === 9) {
+        toast.dark("It's a tie!");
+        setGameStatus("Tie!");
+        setGameOver(true);
+        resetGame()
+        return;
+      }
+
+      setTimeout(computerTurn, 500);
+    }
+  }, [playerMoves]);
+
+  const computerTurn = () => {
+    if (gameOver) return;
+    let availableMoves = mapping.filter((index) => board[index] === "");
+
+    let move = findBestMove(availableMoves, computerMoves, playerMoves);
+    makeMove(move, "Computer");
+
+    if (checkWinner([...computerMoves, move], "Computer")) return;
+
+    if (playerMoves.length + computerMoves.length + 1 === 9) {
+      toast.dark("It's a tie!");
+      setGameStatus("Tie!");
+      setGameOver(true);
+    }
+  };
+
+  const findBestMove = (availableMoves, computer, player) => {
+    // Block player’s winning move
+    for (const move of availableMoves) {
+      const testMoves = [...player, move];
+      if (winningCombinations.some((combo) => combo.every((i) => testMoves.includes(i)))) {
+        return move;
+      }
+    }
+    // Try to win
+    for (const move of availableMoves) {
+      const testMoves = [...computer, move];
+      if (winningCombinations.some((combo) => combo.every((i) => testMoves.includes(i)))) {
+        return move;
+      }
+    }
+    // Pick a random move
+    return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+  };
+
+  return (
     <>
-      <div className="container" >
-        {mapping.map((value)=>{
-            return <>
-              <div
-                className={images[value-1]}
-                id={value-1}
-                onClick={  
-                ()=>{eventFunc(value-1)}
-                } >
-            </div>
-            </>
-        })}
-      </div>  
+ 
+      <div className="container " style={{textAlign:"center"}}>
+        {mapping.map((index) => (
+          <div
+            style={{display:"flex", justifyContent:"center" , alignItems:"Center"}}
+            key={index}
+            className={`cell ${board[index]}`}
+            onClick={() => makeMove(index, "Player")}
+          >
+            {board[index] === "X" ? "❌" : board[index] === "O" ? "⭕" : ""}
+          </div>
+        ))}
+      </div>
+     
     </>
-   )
+  );
 }
 
-
-export default Pattern
+export default Pattern;
