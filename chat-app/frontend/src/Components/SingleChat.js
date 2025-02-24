@@ -10,7 +10,8 @@ import {getSender , getSenderFull} from '../config/chatLogics'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import io from 'socket.io-client'
-
+import { useEffect } from 'react';
+import ScrollableChat from './ScrollableChat';
 const EndPoint = "http://localhost:5000";
 let socket,selectedChatCompare;
 
@@ -28,7 +29,7 @@ const SingleChat = ({fetchAgain,setfetchAgain}) => {
       if(!selectedChat) return 0;
       try{
         const config={
-          header:{
+          headers:{
             "Content-Type":"application/json",
             Authorization:`Bearer ${user.token}`
           }
@@ -53,7 +54,7 @@ const SingleChat = ({fetchAgain,setfetchAgain}) => {
       if(e.key==="Enter" && newMessage){
         try{
           const config={
-            header:{
+            headers:{
               "Content-Type":"application/json",
               Authorization:`Bearer ${user.token}`
             }

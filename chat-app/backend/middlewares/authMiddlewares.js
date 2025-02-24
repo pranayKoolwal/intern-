@@ -11,9 +11,10 @@ const protect = asyncHandler(
                 token = req.headers.authorization.split(" ")[1];
                 //decodes token id
                 const decoded = jwt.verify(token, "secPranay");
-                req.user = await User.findById(decoded.id).select("-password");
-                console.log(req.user)
-                next()
+                console.log(decoded);
+                req.user = await User.findById(decoded.id).select("-password");  
+                  console.log(req) 
+                next()    
             } catch (error) {
                 res.status(401);
                 throw new Error("Not authorized , token Failed")

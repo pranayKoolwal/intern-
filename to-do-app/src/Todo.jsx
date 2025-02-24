@@ -19,12 +19,14 @@ function Todo() {
     e.preventDefault();
     if(pointer1===0){
       let setting = {...main}
-      setting.Des.push(description)
-      setting.Task.push(task)
-      setting.TimeData.push(time)
+
+      setting.Des.push(description ? description : "No Description")
+      setting.Task.push(task ? task : "No Task")
+      setting.TimeData.push(time ? time : "No Time")
       setmain({...setting})
       settask("")
       setDesc("")
+      setTime("")
     }
     else{
           let setData = {...main}        
@@ -32,6 +34,7 @@ function Todo() {
           setData['Des'][update]  = description
           setData['TimeData'][update] = time
           setmain({...setData})
+          console.log(update)
           settask("")
           setDesc("")
           setupdate("")
@@ -39,21 +42,20 @@ function Todo() {
           setpointer(0)
     }
   }
-  let deletefunc = (data1,data2)=>{
+  let deletefunc = (inx)=>{
     let del = {...main}
-    let Index= del.Des.indexOf(data2)
     for(let x in del){
-       del[x].splice(Index,1)
+       del[x].splice(inx,1)
     }
     setmain({...del})
   }
-  let updatefunc = (data1,data2)=>{
+  let updatefunc = (inx)=>{
     let del = {...main}
-    let Index= del.Des.indexOf(data2)
-    settask(data1)
+    settask(del.Task[inx])
     setpointer(1)
-    setDesc(data2)
-    setupdate(Index)
+    setDesc(del.Des[inx])
+    setTime(del.TimeData[inx])
+    setupdate(inx)
   }
   return (
     <>
@@ -88,13 +90,13 @@ function Todo() {
           {main.Des.map((value,inx)=>{
               return(<tr>
                  <td>{main.Task[inx]}</td>
-                 <td>{main.TimeData[inx]}</td>
                  <td>{value}</td>
+                 <td>{main.TimeData[inx]}</td>
                  <td onClick={()=>{
-                  deletefunc(main.Task[inx],value)
+                  deletefunc(inx)
                  }}><DeleteIcon/></td>
                  <td onClick={()=>{
-                  updatefunc(main.Task[inx],value)
+                  updatefunc(inx )
                  }}><UpgradeIcon/></td>
               </tr>)
           })}

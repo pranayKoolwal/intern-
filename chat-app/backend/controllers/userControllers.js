@@ -52,13 +52,11 @@ const authUser = asyncHandler(
                 pict:user.pict,
                 token:generateToken(user._id)
             })
-
         }
         else{
             res.status(401);
             throw new Error('invalid email and password')
         }
-
     }    
 )
 const AllUsers=asyncHandler(
