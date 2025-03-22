@@ -1,0 +1,125 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-image {
+    background: #6658d3;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-heading {
+    margin: 0;
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+}
+
+.card-heading small {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+.card-form {
+    padding: 20px;
+}
+
+.input {
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.input-field::placeholder {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: #999;
+}
+
+.input-field:focus {
+    border-color: #6658d3;
+    outline: none;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+
+.add-button {
+    background: #6658d3;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    transition: background 0.3s;
+}
+
+.add-button:hover {
+    background: #5747b5;
+}
+
+.action {
+    text-align: center;
+}
+
+.action-button {
+    background: #6658d3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    transition: background 0.3s;
+}
+
+.action-button:hover {
+    background: #5747b5;
+}
+
+.card-info {
+    padding: 20px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.card-info p {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.card-info a {
+    color: #6658d3;
+    text-decoration: none;
+    font-family: 'Arial', sans-serif;
+    transition: color 0.3s;
+}
+
+.card-info a:hover {
+    color: #5747b5;
+}
